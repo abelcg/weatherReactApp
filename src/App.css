@@ -1,38 +1,50 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap);
+
 .App {
-  text-align: center;
+  font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  background-image: url("./img/nublado.jpg");
+  background-size: cover;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 150vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form-container {
+  background: #00416a;
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  border: solid #bdbdbd 0;
+  box-shadow: 2px 11px 20px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 2px 11px 20px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 2px 11px 20px rgba(0, 0, 0, 0.6);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.input {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid #a9b4bd !important;
+}
+.input:focus {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid #615fff !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.input::placeholder {
+  color: rgb(255, 255, 255) !important;
+  font-size: 1em;
 }
 
-.App-link {
-  color: #61dafb;
+.wheatherContainer {
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  background-color: rgba(49, 56, 70, 0.603);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  margin-top: 12%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.weatherIcon {
+  font-size: 4em;
 }
