@@ -22,7 +22,7 @@ const WheatherContainer = (props) => {
             {Math.floor(props.climate.main.temp_max)}°
           </span>
           <span className="text-light fs-6">|</span>
-          <span className="text-muted mx-2 text-white fs-6">
+          <span className="text-secondary mx-2 text-white fs-6">
             {Math.floor(props.climate.main.temp_min)}°
           </span>
         </div>

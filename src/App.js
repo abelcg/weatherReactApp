@@ -3,24 +3,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Forms from "./components/Forms";
 import WheatherContainer from "./components/WheatherContainer";
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 function App() {
   const [climate, setClimate] = useState({});
   const [icon, setIcon] = useState("");
-
-  useEffect(() => {
-    getWeather();
-    getWeatherIcon();
-  },[]);
-
-  let getWeather = async () => {
-    const apiCall = await fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=Paris,fr&units=metric&APPID=5f87bfcc54a9a5edbfcfd70e3e88febf&lang=es"
-    );
-    const response = await apiCall.json();
-    console.log(response.weather[0].main);
-    setClimate(response);
+  const datosInciales = {
+    ciudad: "",
+    pais: "",
   };
+  const [datos, setDatos] = useState(datosInciales);
+  const [error, setError] = useState(false);
 
   const weatherIcon = {
     thunderstorm: "thunderstorm",
@@ -28,12 +21,14 @@ function App() {
     rain: "storm-showers",
     snow: "snow",
     atmosphere: "fog",
-    clear: "sunny",
+    clear: "clear",
     clouds: "cloudy",
   };
 
-  let getWeatherIcon = () => {
-    switch (climate.weather[0].main) {
+  let getWeatherIcon = async (climate) => {
+    let clima = await climate.weather[0].main;
+    console.log(clima);
+    switch (clima) {
       case "Thunderstorm":
         setIcon(weatherIcon.thunderstorm);
         break;
@@ -63,10 +58,47 @@ function App() {
     }
   };
 
+  let getWeather = async () => {
+    if (datos.ciudad && datos.pais) {
+      const apiKey = "5f87bfcc54a9a5edbfcfd70e3e88febf";
+      const apiCall = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${datos.ciudad},${datos.pais}&units=metric&APPID=${apiKey}&lang=es`
+      );
+      const response = await apiCall.json();
+      try {
+        if (response.cod === 200) {
+          console.log(response);
+          setClimate(response);
+          setError(true);
+          getWeatherIcon(response);          
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Ups...Error 404",
+            text: "Ciudad no encontrada!",
+          });
+          setError(false);
+          return null;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setError(false);
+    }
+  };
+
+  useEffect(() => {
+    getWeather();
+    // getWeatherIcon();
+  }, []);
+
   return (
     <div className="App">
-      <Forms></Forms>
-      <WheatherContainer climate={climate} icon={icon}></WheatherContainer> 
+      <Forms datos={datos} setDatos={setDatos} getWeather={getWeather}></Forms>
+      {error ? (
+        <WheatherContainer climate={climate} icon={icon}></WheatherContainer>
+      ) : null}
     </div>
   );
 }
