@@ -122,7 +122,7 @@ function App() {
 
   useEffect(() => {
     getWeather();
-  }, []);
+  });
   
   return (
     <div className={(bg) !== "" ? `App ${bg}` : 'App'}  >
