@@ -1,16 +1,20 @@
 import React from "react";
-import "weather-icons/css/weather-icons.css";
-import "weather-icons/css/weather-icons-wind.css";
+//import "weather-icons/css/weather-icons.css";
+//import "weather-icons/css/weather-icons-wind.css";
+import Image from 'react-bootstrap/Image';
 
 const WheatherContainer = (props) => {
  
   return (
     <section className="container  text-center wheatherContainer py-5">
-      <h1 className="text-light">
+      <h2 className="text-light">
         {props.climate.name}, {props.climate.sys.country}{" "}
-      </h1>
+      </h2>
       <hr className="text-light" />
-      <i className={`text-light my-5 weatherIcon wi wi-night-${props.icon}`}></i>
+      <div className="text-light" ><Image src={`http://openweathermap.org/img/wn/${props.icon}@2x.png`} fluid /></div>
+      {/* <i
+        className={`text-light my-5 weatherIcon wi wi-night-${props.icon}`}
+      ></i> */}
       <div className="row d-flex justify-content-sm-center align-items-sm-center">
         <div className="col-sm-1">
           <h2 className="text-light fs-1">

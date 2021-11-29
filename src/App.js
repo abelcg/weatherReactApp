@@ -14,48 +14,80 @@ function App() {
   };
   const [datos, setDatos] = useState(datosInciales);
   const [error, setError] = useState(false);
+  const [bg, setBg] = useState("");
 
-  const weatherIcon = {
-    thunderstorm: "thunderstorm",
-    drizzle: "sleet",
-    rain: "storm-showers",
-    snow: "snow",
-    atmosphere: "fog",
-    clear: "clear",
-    clouds: "cloudy",
+  const weatherCondition = {
+    thunderstormDay: "thunderstormDay",
+    thunderstormNight: "thunderstormNight",
+    drizzleDay: "sleetDay",
+    drizzleNight: "sleetNight",
+    rainDay: "rainDay",
+    rainNight: "rainNight",
+    snowDay: "snowDay",
+    snowNight: "snowNight",
+    atmosphereDay: "fogDay",
+    atmosphereNight: "fogNight",
+    clearDay: "clearDay",
+    clearNight: "clearNight",
+    cloudsDay: "cloudyDay",
+    cloudsNight: "cloudyNight",
   };
 
-  let getWeatherIcon = async (climate) => {
-    let clima = await climate.weather[0].main;
-    console.log(clima);
-    switch (clima) {
-      case "Thunderstorm":
-        setIcon(weatherIcon.thunderstorm);
+  let getWeatherIconBg = async (climate) => {
+    let icon = await climate.weather[0].icon;
+   
+    setIcon(icon);
+     switch (icon) {
+      case "11d":
+        setBg(weatherCondition.thunderstormDay);
         break;
-      case "Drizzle":
-        setIcon(weatherIcon.drizzle);
+      case "11n":
+        setBg(weatherCondition.thunderstormNight);
         break;
-
-      case "Rain":
-        setIcon(weatherIcon.rain);
+      case "09d":
+        setBg(weatherCondition.drizzleDay);
         break;
-      case "Snow":
-        setIcon(weatherIcon.snow);
+      case "09n":
+        setBg(weatherCondition.drizzleNight);
         break;
-      case "Atmosphere":
-        setIcon(weatherIcon.atmosphere);
+      case "10d":
+        setBg(weatherCondition.rainDay);
         break;
-      case "Clear":
-        setIcon(weatherIcon.clear);
+      case "10n":
+        setBg(weatherCondition.rainNight);
         break;
-      case "Clouds":
-        setIcon(weatherIcon.clouds);
+      case "13d":
+        setBg(weatherCondition.snowDay);
         break;
-
+      case "13n":
+        setBg(weatherCondition.snowNight);
+        break;
+      case "50d":
+        setBg(weatherCondition.atmosphereDay);
+        break;
+      case "50n":
+        setBg(weatherCondition.atmosphereNight);
+        break;
+      case "01n":
+        setBg(weatherCondition.clearNight);
+        break;
+      case "01d":
+        setBg(weatherCondition.clearDay);
+        break;
+      case "02d":
+      case "03d":
+      case "04d":
+        setBg(weatherCondition.cloudsDay);
+        break;
+      case "02n":
+      case "03n":
+      case "04n":
+        setBg(weatherCondition.cloudsNight);
+        break;
       default:
-        setIcon(weatherIcon.clear);
+        setBg(weatherCondition.clearDay);
         break;
-    }
+    } 
   };
 
   let getWeather = async () => {
@@ -67,10 +99,10 @@ function App() {
       const response = await apiCall.json();
       try {
         if (response.cod === 200) {
-          console.log(response);
+         
           setClimate(response);
           setError(true);
-          getWeatherIcon(response);          
+          getWeatherIconBg(response);          
         } else {
           Swal.fire({
             icon: "error",
@@ -90,11 +122,10 @@ function App() {
 
   useEffect(() => {
     getWeather();
-    // getWeatherIcon();
   }, []);
-
+  
   return (
-    <div className="App">
+    <div className={(bg) !== "" ? `App ${bg}` : 'App'}  >
       <Forms datos={datos} setDatos={setDatos} getWeather={getWeather}></Forms>
       {error ? (
         <WheatherContainer climate={climate} icon={icon}></WheatherContainer>

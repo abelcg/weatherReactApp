@@ -3,12 +3,55 @@
 .App {
   font-family: "Poppins", sans-serif;
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-  background-image: url("./img/nublado.jpg");
   background-size: cover;
+  background-position: center;
   overflow: hidden;
   background-repeat: no-repeat;
   width: 100vw;
   height: 150vh;
+}
+
+.clearDay{
+  background-image: url("./img/clearDay.jpg"); 
+}
+.clearNight{
+  background-image: url("./img/clearNight.jpg"); 
+}
+.thunderstormDay{
+  background-image: url("./img/thunderstormDay.jpg"); 
+}
+.thunderstormNight{
+  background-image: url("./img/thunderstormNight.jpg"); 
+}
+.sleetDay{
+  background-image: url("./img/sleetDay.jpg"); 
+}
+.sleetNight{
+  background-image: url("./img/sleetNight.jpg"); 
+}
+.rainDay{
+  background-image: url("./img/rainDay.jpg"); 
+}
+.rainNight{
+  background-image: url("./img/rainNight.jpg"); 
+}
+.snowDay{
+  background-image: url("./img/snowDay.jpg"); 
+}
+.snowNight{
+  background-image: url("./img/snowNight.jpg"); 
+}
+.fogDay{
+  background-image: url("./img/fogDay.jpg"); 
+}
+.fogNight{
+  background-image: url("./img/fogNight.jpg"); 
+}
+.cloudyDay{
+  background-image: url("./img/cloudyDay.jpg"); 
+}
+.cloudyNight{
+  background-image: url("./img/cloudyNight.jpg"); 
 }
 
 .form-container {
@@ -37,12 +80,13 @@
 }
 
 .wheatherContainer {
-  backdrop-filter: blur(8px) saturate(180%);
-  -webkit-backdrop-filter: blur(8px) saturate(180%);
-  background-color: rgba(49, 56, 70, 0.603);
+  backdrop-filter: blur(7px) saturate(180%);
+  -webkit-backdrop-filter: blur(7px) saturate(180%);
+  background-color: rgba(136, 145, 163, 0.541);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.125);
-  margin-top: 12%;
+  box-shadow: 2px 11px 20px rgba(0, 0, 0, 0.6)  ; 
+  margin-top: 18%;
 }
 
 .weatherIcon {

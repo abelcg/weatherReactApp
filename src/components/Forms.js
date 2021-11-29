@@ -19,6 +19,8 @@ const Forms = (props) => {
 
   return (
     <div className="form-container">
+      <h1 className="text-light text-center fw-bold mb-2 fs-1">Weather App</h1>
+      <hr className="text-light" />
       <Form id="formW"
         className="container p-3 d-flex flex-column flex-md-row  justify-content-around align-items-center"
         onSubmit={handleSubmit}
