@@ -99,7 +99,7 @@ function App() {
       const response = await apiCall.json();
       try {
         if (response.cod === 200) {
-          console.log(response)
+          //console.log(response)
           setClimate(response);
           setError(true);
           getWeatherIconBg(response);          
