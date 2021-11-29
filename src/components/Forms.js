@@ -14,7 +14,7 @@ const Forms = (props) => {
   let handleSubmit = (event) => {
     event.preventDefault();
     props.getWeather();
-    {document.getElementById("formW").reset();}
+    document.getElementById("formW").reset();
   };
 
   return (
