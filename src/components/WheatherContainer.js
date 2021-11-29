@@ -1,6 +1,6 @@
 import React from "react";
 //import "weather-icons/css/weather-icons.css";
-//import "weather-icons/css/weather-icons-wind.css";
+import "weather-icons/css/weather-icons-wind.css";
 import Image from 'react-bootstrap/Image';
 
 const WheatherContainer = (props) => {
